@@ -1,17 +1,14 @@
 <?php
-use Psr\Http\Message\ResponseInterface as Response;
-use Psr\Http\Message\ServerRequestInterface as Request;
+
 use Slim\Factory\AppFactory;
 use Slim\Exception\NotFoundException;
+
+use App\Http\Controllers\EncodeController;
 
 $app = AppFactory::create();
 
 // Route to encode a url
-$app->get('/encode/{url}', function (Request $request, Response $response, array $args) {
-    $url = $args['url'];
-    $response->getBody()->write("Hello, $url");
-    return $response;
-});
+$app->get('/encode/{url}', EncodeController::class . ':getPage');
 
 // Route to encode a url
 $app->get('/decode/{hash}', function (Request $request, Response $response, array $args) {
