@@ -37,7 +37,7 @@ class EncodeController extends ShortController {
         if(validate::isValidUrl($rawUrl)) {
             $response->getBody()->write($this->responseData($rawUrl));
         } else {
-            $response->getBody()->write(json_encode($this->error($rawUrl, "Invalid URl")));
+            $response->getBody()->write($this->error($rawUrl, "Invalid URl"));
         }
 
         return $response->withHeader('Content-type', 'application/json');

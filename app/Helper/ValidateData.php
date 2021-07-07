@@ -1,7 +1,12 @@
 <?php
+declare(strict_types = 1);
 
 namespace App\Helper;
 
+/**
+ * ValidateData
+ * A set of methods used to validate data
+ */
 class ValidateData {
 
 

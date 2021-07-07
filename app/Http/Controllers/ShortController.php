@@ -27,12 +27,14 @@ class ShortController {
      * @param  string $url
      * @return string
      */
-    protected function error(string $url, string $msg): array
+    protected function error(string $url, string $msg): string
     {
-        return array(
+        $errorMsg = array(
             "error" => $msg,
             "original_url" => $url
         );
+
+        return json_encode($errorMsg);
     }
 
 }

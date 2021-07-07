@@ -1,4 +1,5 @@
 <?php
+declare(strict_types = 1);
 
 namespace App\Http\Controllers;
 
@@ -30,9 +31,9 @@ class DecodeController extends ShortController {
         if($data) {
             $response->getBody()->write($data);
         } else {
-            $response->getBody()->write(json_encode($this->error($hash, "The hash is invalid!")));
+            $response->getBody()->write($this->error($hash, "The hash is invalid!"));
         }
-        
+
         return $response->withHeader('Content-type', 'application/json');
     }
 
