@@ -37,7 +37,7 @@ class EncodeController extends ShortController {
         if(validate::isValidUrl($rawUrl)) {
             $response->getBody()->write($this->responseData($rawUrl));
         } else {
-            $response->getBody()->write($this->error($rawUrl, "Invalid URl"));
+            $response->getBody()->write(json_encode($this->error($rawUrl, "Invalid URl")));
         }
         return $response;
     }
@@ -49,19 +49,20 @@ class EncodeController extends ShortController {
      * @param  string $url
      * @return string (json)
      */
-    private function responseData(string $url): string
+    private function responseData(string $url): ?string
     {
-        $short = $this->helper->shortenUrl($url);
+        $hash = $this->helper->shortenUrl($url);
 
-        if($short) {
+        if($hash) {
             $responseData = array(
                 "original" => $url,
-                "short" => $short
+                "hash" => $hash,
+                "slimLinkUrl" => $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/encode/'
             );
 
             return json_encode($responseData, JSON_UNESCAPED_SLASHES);
         }
-        return json_encode($url, "Something went wrong with this URl!");
+        return null;
     }
     
 }
