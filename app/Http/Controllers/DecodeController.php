@@ -26,12 +26,14 @@ class DecodeController extends ShortController {
     {
         $hash = $args['hash'];
         $data = $this->responseData($hash);
+
         if($data) {
             $response->getBody()->write($data);
         } else {
             $response->getBody()->write(json_encode($this->error($hash, "The hash is invalid!")));
         }
-        return $response;
+        
+        return $response->withHeader('Content-type', 'application/json');
     }
 
     /**

@@ -1,1 +1,15 @@
-# use base_convert($val, 10, 36) to hash url
+# Routes
+
+Routes found in /router/routes.php
+
+## root /
+
+Just return a simple hello message.
+
+## /encode
+
+This route uses the EncodeController.
+
+## /decode
+
+This route uses the DecodeController.
