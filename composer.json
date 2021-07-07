@@ -1,7 +1,4 @@
 {
-    "require": {
-        "slim/slim-skeleton": "dev-master"
-    },
     "require-dev": {
         "phpunit/phpunit": "^9.5"
     },
@@ -10,5 +7,8 @@
             "App\\Http\\Controllers\\": "app/Http/Controllers",
             "App\\Helper\\": "app/Helper"
         }
+    },
+    "require": {
+        "slim/slim-skeleton": "^4.3"
     }
 }

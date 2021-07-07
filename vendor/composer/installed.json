@@ -3046,17 +3046,17 @@
         },
         {
             "name": "slim/slim-skeleton",
-            "version": "dev-master",
-            "version_normalized": "dev-master",
+            "version": "4.3.0",
+            "version_normalized": "4.3.0.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/slimphp/Slim-Skeleton.git",
-                "reference": "9129c09722b1e5385d0367900b9622187777f769"
+                "reference": "e3927652b1f008f1808b6fc2e9ac55f1b71021da"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/slimphp/Slim-Skeleton/zipball/9129c09722b1e5385d0367900b9622187777f769",
-                "reference": "9129c09722b1e5385d0367900b9622187777f769",
+                "url": "https://api.github.com/repos/slimphp/Slim-Skeleton/zipball/e3927652b1f008f1808b6fc2e9ac55f1b71021da",
+                "reference": "e3927652b1f008f1808b6fc2e9ac55f1b71021da",
                 "shasum": ""
             },
             "require": {
@@ -3070,11 +3070,10 @@
             "require-dev": {
                 "jangregor/phpstan-prophecy": "^0.8.1",
                 "phpstan/extension-installer": "^1.1.0",
-                "phpstan/phpstan": "^0.12.90",
+                "phpstan/phpstan": "^0.12.80",
                 "phpunit/phpunit": "^8.0 || ^9.0"
             },
-            "time": "2021-07-03T19:16:26+00:00",
-            "default-branch": true,
+            "time": "2021-04-26T02:48:52+00:00",
             "type": "library",
             "installation-source": "dist",
             "autoload": {
@@ -3108,7 +3107,7 @@
             ],
             "support": {
                 "issues": "https://github.com/slimphp/Slim-Skeleton/issues",
-                "source": "https://github.com/slimphp/Slim-Skeleton/tree/master"
+                "source": "https://github.com/slimphp/Slim-Skeleton/tree/4.3.0"
             },
             "install-path": "../slim/slim-skeleton"
         },

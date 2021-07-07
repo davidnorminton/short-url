@@ -470,14 +470,12 @@
             'dev_requirement' => false,
         ),
         'slim/slim-skeleton' => array(
-            'pretty_version' => 'dev-master',
-            'version' => 'dev-master',
+            'pretty_version' => '4.3.0',
+            'version' => '4.3.0.0',
             'type' => 'library',
             'install_path' => __DIR__ . '/../slim/slim-skeleton',
-            'aliases' => array(
-                0 => '9999999-dev',
-            ),
-            'reference' => '9129c09722b1e5385d0367900b9622187777f769',
+            'aliases' => array(),
+            'reference' => 'e3927652b1f008f1808b6fc2e9ac55f1b71021da',
             'dev_requirement' => false,
         ),
         'symfony/polyfill-ctype' => array(
