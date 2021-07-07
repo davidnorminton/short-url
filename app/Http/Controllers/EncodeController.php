@@ -61,7 +61,7 @@ class EncodeController extends ShortController {
                 "slimLinkUrl" => $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/encode/'
             );
 
-            return json_encode($responseData, JSON_UNESCAPED_SLASHES);
+            return json_encode($responseData, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
         }
         return null;
     }

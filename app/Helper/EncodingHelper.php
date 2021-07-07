@@ -77,6 +77,31 @@ class EncodingHelper {
         return null;
     }
     
+    
+    /**
+     * convertBase36ToDecimal
+     *
+     * @param  mixed $numb
+     * @return void
+     */
+    private function convertBase36ToDecimal($numb)
+    {
+        return base_convert($numb, 36, 10);
+    }
+
+    
+    /**
+     * getLastItemInLookupTable
+     *
+     * @return 
+     */
+    private function getLastItemInLookupTable(): ?array
+    {
+        $json = json_decode($this->lookupJsonFile, true);
+        return $json[count($json) - 1] ?? null;
+    }
+    
+
     /**
      * lookupHash
      * Search stored hases for a hash matching input
@@ -97,6 +122,7 @@ class EncodingHelper {
         return null;
     }
     
+
     /**
      * lookupUrl
      * Search stored hashes for a url matching input 
@@ -117,6 +143,7 @@ class EncodingHelper {
         return null;
     }
     
+
     /**
      * matchHashToUrl
      * finds a hash then returns its associated url

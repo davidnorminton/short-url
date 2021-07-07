@@ -3,6 +3,8 @@
 Note: if running tests ensure the port in tests/RoutesTest.php matches the port the site
 is running on.
 
+SlimLink converts a url (base64 encoded) into a smaller base36 encoded hash;
+
 
 ## Run the application
 
@@ -45,8 +47,8 @@ The api returns a json object in the form:
 }
 ```
 - Here the original key represents the decoded base64 hash of the original url.
-- Short represents the url key to use
-- and the climLinkUrl is the full url which can be shared
+- The short key represents the url key to use
+- and the slimLinkUrl key is the full url which can be shared
 
 
 ### Decoding

@@ -19,7 +19,6 @@ $app->get('/', function (Request $request, Response $response, array $args): Res
 // Route to encode a url
 $app->get('/encode/{url}', EncodeController::class . ':getPage');
 
-// Route to decode hash
 $app->get('/decode/{hash}', DecodeController::class . ':getPage');
 
 $app->run();
