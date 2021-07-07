@@ -29,7 +29,7 @@ final class RoutesTest extends TestCase
 
         $output = file_get_contents($url);
         $decodeOutput = json_decode($output, true);
-        echo "Testing encode endpoint";
+        echo  PHP_EOL . "Testing encode endpoint" . PHP_EOL;
         $this->assertEquals($this->testEncode, $decodeOutput['original']);
     }
 
@@ -42,7 +42,7 @@ final class RoutesTest extends TestCase
 
         $output = file_get_contents($url);
         $decodeOutput = json_decode($output, true);
-        echo "Testing encode endpoint";
+        echo  PHP_EOL . "Testing decode endpoint" . PHP_EOL;
         $this->assertEquals($this->testEncode, $decodeOutput['original']);
     }
 

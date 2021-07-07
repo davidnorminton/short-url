@@ -15,8 +15,8 @@ class EncodingHelper {
 
     public function __construct()
     {
-        $this->lookupTable = $_SERVER['DOCUMENT_ROOT'] . "/app/Storage/Hash_lookup.json";
-        $this->lookupJsonFile = file_get_contents($this->lookupTable);
+        $this->lookupTableLocation = $_SERVER['DOCUMENT_ROOT'] . "/app/Storage/Hash_lookup.json";
+        $this->lookupJsonFile = file_get_contents($this->lookupTableLocation);
     }
 
     /**
