@@ -59,18 +59,20 @@ class EncodingHelper {
     public function addToLookup(string $url): ?string 
     {
         $json = json_decode($this->lookupJsonFile, true) ?? [];
-        // NOT A GOOD METHOD FOR THIS AS DELETIONS WOULD CAUSED COLLISIONS WITH FUTURE INSERTS!
 
-        $lenJson = count($json);
+        $lastItem = $this->getLastItemInLookupTable();
+        $nextId = 0;
 
-        $lastId = $json[$lenJson - 1] ?? 0;
+        if($lastItem) {
+            $lastHashId =  $this->convertBase36ToDecimal($lastItem['hash']);
+            $nextId = $lastHashId + 1;
+        }
 
-        // CHANGE THE ABOVE METHOD FOR GETTING NEWSEST ID!!
-        $hash = base_convert($lastId + 1, 10, 36);
+        $hash = base_convert((int)$nextId, 10, 36);
 
         array_push($json, ["hash" => $hash, "url" => $url]);
 
-        if(file_put_contents($this->lookupTable, json_encode($json, JSON_UNESCAPED_SLASHES))) {
+        if(file_put_contents($this->lookupTableLocation, json_encode($json, JSON_UNESCAPED_SLASHES))) {
             return $hash;
         }
 
@@ -82,9 +84,9 @@ class EncodingHelper {
      * convertBase36ToDecimal
      *
      * @param  mixed $numb
-     * @return void
+     * @return string
      */
-    private function convertBase36ToDecimal($numb)
+    private function convertBase36ToDecimal($numb): string
     {
         return base_convert($numb, 36, 10);
     }
@@ -93,7 +95,7 @@ class EncodingHelper {
     /**
      * getLastItemInLookupTable
      *
-     * @return 
+     * @return array | null
      */
     private function getLastItemInLookupTable(): ?array
     {

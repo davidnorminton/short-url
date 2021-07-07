@@ -17,6 +17,8 @@ class DecodeController extends ShortController {
     /**
      * getPage
      * returns the url associated with the hash
+     *      
+     * @Route("/decode/{hash}", methods={"GET"})
      * 
      * @param  Request $request
      * @param  Response $response
@@ -44,15 +46,15 @@ class DecodeController extends ShortController {
      * @param  string $url
      * @return string (json)
      */
-    private function responseData(string $hash): ?string
+    private function responseData(string $query): ?string
     {
-        $url = $this->helper->matchHashToUrl($hash);
+        $url = $this->helper->matchHashToUrl($query);
 
         if($url) {
             $responseData = array(
                 "original" => $url,
-                "short" => $hash,
-                "slimLinkUrl" => $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT']. "/decode/$hash"
+                "hash" => $hash,
+                "slimLinkUrl" => $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . "/decode/$query"
             );
 
             return json_encode($responseData,  JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);

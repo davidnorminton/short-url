@@ -4,20 +4,23 @@ use PHPUnit\Framework\TestCase;
 
 final class RoutesTest extends TestCase
 {
+    // protocol to use
+    private $proto = 'http://';
+
     // IP address of app
     private $ip = '127.0.0.1';
 
     // Port of app
-    private $port = '9090';
+    private $port = ':9090';
 
     // encode url
-    private $encode = '/encode';
+    private $encode = '/encode/';
 
     // test encode parameter
     private $testEncode = 'https://google.com/';
 
     // decode url 
-    private $decode = '/decode';
+    private $decode = '/decode/';
 
 
     // test encode endpoint
@@ -25,7 +28,7 @@ final class RoutesTest extends TestCase
     {
         $base64EncodeTestUrl = base64_encode($this->testEncode);
 
-        $url = 'http://' .$this->ip . ':'. $this->port . '/encode/'. $base64EncodeTestUrl;
+        $url = $this->proto  .$this->ip . ':'. $this->port . $this->encode. $base64EncodeTestUrl;
 
         $output = file_get_contents($url);
         $decodeOutput = json_decode($output, true);
@@ -38,7 +41,7 @@ final class RoutesTest extends TestCase
     {
         $base64EncodeTestUrl = base64_encode($this->testEncode);
 
-        $url = 'http://' .$this->ip . ':'. $this->port . '/decode/1';
+        $url = $this->proto . $this->ip . $this->port . $this->decode . '1';
 
         $output = file_get_contents($url);
         $decodeOutput = json_decode($output, true);

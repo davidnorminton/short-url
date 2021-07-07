@@ -19,12 +19,12 @@ use App\Helper\ValidateData as validate;
  */
 class EncodeController extends ShortController {
 
-
-
     /**
      * getPage
      * returns a shortened hashed version of the url
      * 
+     * @Route("/encode/{url}", methods={"GET"})
+     *
      * @param  Request $request
      * @param  Response $response
      * @param  mixed $args
@@ -50,15 +50,15 @@ class EncodeController extends ShortController {
      * @param  string $url
      * @return string (json)
      */
-    private function responseData(string $url): ?string
+    private function responseData(string $query): ?string
     {
-        $hash = $this->helper->shortenUrl($url);
+        $hash = $this->helper->shortenUrl($query);
 
         if($hash) {
             $responseData = array(
-                "original" => $url,
+                "original" => $query,
                 "hash" => $hash,
-                "slimLinkUrl" => $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . '/encode/'
+                "slimLinkUrl" => $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . "/decode/$hash"
             );
 
             return json_encode($responseData, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
