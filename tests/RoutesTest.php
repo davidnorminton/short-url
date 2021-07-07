@@ -8,7 +8,7 @@ final class RoutesTest extends TestCase
     private $ip = '127.0.0.1';
 
     // Port of app
-    private $port = '9091';
+    private $port = '9090';
 
     // encode url
     private $encode = '/encode';
@@ -20,26 +20,30 @@ final class RoutesTest extends TestCase
     private $decode = '/decode';
 
 
-
+    // test encode endpoint
     public function testEncodeRoute() : void
     {
         $base64EncodeTestUrl = base64_encode($this->testEncode);
 
-        $url = $this->ip . ':'. $this->port . '/'. $base64EncodeTestUrl;
+        $url = 'http://' .$this->ip . ':'. $this->port . '/encode/'. $base64EncodeTestUrl;
 
-        echo $url;
+        $output = file_get_contents($url);
+        $decodeOutput = json_decode($output, true);
+        echo "Testing encode endpoint";
+        $this->assertEquals($this->testEncode, $decodeOutput['original']);
+    }
 
-        $ch = curl_init();
+    // test decode endpoint
+    public function testDecodeRoute() : void
+    {
+        $base64EncodeTestUrl = base64_encode($this->testEncode);
 
-        curl_setopt($ch, CURLOPT_URL,$url);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        
-        $server_output = curl_exec($ch);
-        
-        curl_close ($ch);
+        $url = 'http://' .$this->ip . ':'. $this->port . '/decode/1';
 
-        $this->assertEquals($base64EncodeTestUrl, $server_output);
+        $output = file_get_contents($url);
+        $decodeOutput = json_decode($output, true);
+        echo "Testing encode endpoint";
+        $this->assertEquals($this->testEncode, $decodeOutput['original']);
     }
 
 }

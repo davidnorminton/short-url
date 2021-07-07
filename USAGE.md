@@ -1,5 +1,9 @@
 #    SlimLInk Usage
 
+Note: if running tests ensure the port in tests/RoutesTest.php matches the port the site
+is running on.
+
+
 ## Run the application
 
 ```console
