@@ -6,6 +6,7 @@
         "psr-4": {
             "App\\Http\\Controllers\\": "app/Http/Controllers",
             "App\\Http\\Models\\": "app/Http/Models",
+            "App\\Http\\Interfaces\\": "app/Http/Interfaces",
             "App\\Helper\\": "app/Helper"        
         }
     },

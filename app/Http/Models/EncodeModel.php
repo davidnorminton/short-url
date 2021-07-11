@@ -4,12 +4,11 @@ declare(strict_types = 1);
 namespace App\Http\Models;
 
 use App\Http\Models\Model; 
-
+use App\Http\Interfaces\EncodeInterface;
 use App\Helper\EncodingHelper as Helper;
-
 use App\Helper\ShortLinksFileHelper as FileHelper;
 
-class EncodeModel extends Model {
+class EncodeModel extends Model implements EncodeInterface {
 
     protected $fileHelper;
 
@@ -17,6 +16,7 @@ class EncodeModel extends Model {
     {
         parent::__construct();
         $this->fileHelper = $fileHelper;
+        $this->fileHelper->setArr($this->shortLinksArr);
     }
 
     /**
@@ -28,20 +28,9 @@ class EncodeModel extends Model {
      */
     public function shortenUrl(string $url): string
     {
-        $id = $this->fileHelper->findIdFromUrl($this->shortLinksArr, $url);
+        $id = $this->fileHelper->findIdFromUrl($url);
+        // if id doesn't exist create a new entry
         return !$id ? $this->addToFile($url) : $id;
-    }
-
-    /**
-     * convertToUrl
-     * Takes an encode id hen returns matching url key in object
-     * 
-     * @param  string $hash
-     * @return string
-     */
-    public function convertToUrl(string $id): ?string
-    {
-        return $this->fileHelper->existsId($this->shortLinksArr, $id) ?? null;
     }
 
     
@@ -55,7 +44,7 @@ class EncodeModel extends Model {
     public function addToFile(string $url): ?string 
     {
 
-        $lastItem = $this->getLastItemInArray();
+        $lastItem = $this->fileHelper->getLastItemInArray();
         $nextId = 0;
 
         if($lastItem) {
@@ -78,14 +67,4 @@ class EncodeModel extends Model {
         return null;
     }
 
-        
-    /**
-     * getLastItemInLookupTable
-     *
-     * @return array | null
-     */
-    private function getLastItemInArray(): ?array
-    {
-        return $this->shortLinksArr[count($this->shortLinksArr) - 1] ?? null;
-    }
 }

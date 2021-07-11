@@ -10,8 +10,9 @@ namespace App\Http\Controllers;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
-use App\Http\Models\EncodeModel as EncodeModel;
+use App\Http\Interfaces\ControllerInterface;
 
+use App\Http\Models\EncodeModel as EncodeModel;
 use App\Http\Controllers\ShortController;
 use App\Helper\ValidateData as validate;
 use App\Helper\ShortLinksFileHelper as FileHelper;
@@ -19,13 +20,14 @@ use App\Helper\ShortLinksFileHelper as FileHelper;
 /**
  * EncodeController
  */
-class EncodeController extends ShortController {
+class EncodeController extends ShortController implements ControllerInterface{
 
     public $encodeModel;
     public $fileHelper;
 
     public function __construct()
     {
+        // EncodeModel depends on App\Helper\ShortLinksFileHelper
         $this->encodeModel = new EncodeModel(new FileHelper());
     }
 
@@ -60,7 +62,7 @@ class EncodeController extends ShortController {
      * @param  string $url
      * @return string (json)
      */
-    private function responseData(string $query): ?string
+    public function responseData(string $query): ?string
     {
         $encodeId = $this->encodeModel->shortenUrl($query);
 

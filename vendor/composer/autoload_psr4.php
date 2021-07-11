@@ -28,6 +28,7 @@ return array(
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
     'DI\\' => array($vendorDir . '/php-di/php-di/src'),
     'App\\Http\\Models\\' => array($baseDir . '/app/Http/Models'),
+    'App\\Http\\Interfaces\\' => array($baseDir . '/app/Http/Interfaces'),
     'App\\Http\\Controllers\\' => array($baseDir . '/app/Http/Controllers'),
     'App\\Helper\\' => array($baseDir . '/app/Helper'),
     'App\\' => array($vendorDir . '/slim/slim-skeleton/src'),

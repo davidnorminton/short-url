@@ -6,17 +6,30 @@ namespace App\Http\Controllers;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
+use App\Http\Interfaces\ControllerInterface;
+use App\Http\Models\DecodeModel as DecodeModel;
 use App\Http\Controllers\ShortController;
+use App\Helper\ShortLinksFileHelper as FileHelper;
+
 
 /**
  * DecodeController
  * 
  */
-class DecodeController extends ShortController {
+class DecodeController extends ShortController implements ControllerInterface {
+
+    public $decodeModel;
+    public $fileHelper;
+
+    public function __construct()
+    {
+        // DecodeModel depends on App\Helper\ShortLinksFileHelper
+        $this->decodeModel = new DecodeModel(new FileHelper());
+    }
 
     /**
      * getPage
-     * returns the url associated with the hash
+     * returns the url associated with the id
      *      
      * @Route("/decode/{hash}", methods={"GET"})
      * 
@@ -27,13 +40,12 @@ class DecodeController extends ShortController {
      */
     public function getPage(Request $request, Response $response, $args): Response
     {
-        $hash = $args['hash'];
-        $data = $this->responseData($hash);
+        $id = $request->getQueryParams("url")["id"];
 
-        if($data) {
-            $response->getBody()->write($data);
+        if($id) {
+            $response->getBody()->write($this->responseData($id));
         } else {
-            $response->getBody()->write($this->error($hash, "The hash is invalid!"));
+            $response->getBody()->write($this->error($id, "Invalid URl"));
         }
 
         return $response->withHeader('Content-type', 'application/json');
@@ -46,15 +58,14 @@ class DecodeController extends ShortController {
      * @param  string $url
      * @return string (json)
      */
-    private function responseData(string $query): ?string
+    public function responseData(string $query): ?string
     {
-        $url = $this->helper->matchHashToUrl($query);
+        $url = $this->decodeModel->getUrlFromId($query);
 
         if($url) {
             $responseData = array(
-                "original" => $url,
-                "hash" => $hash,
-                "slimLinkUrl" => $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . "/decode/$query"
+                "id" => $query,
+                "url" => $url            
             );
 
             return json_encode($responseData,  JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
