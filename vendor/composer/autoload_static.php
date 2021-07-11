@@ -68,6 +68,7 @@ class ComposerStaticInitaa30da0add75f98291deb943ede2e73b
         ),
         'A' => 
         array (
+            'App\\Http\\Models\\' => 16,
             'App\\Http\\Controllers\\' => 21,
             'App\\Helper\\' => 11,
             'App\\' => 4,
@@ -162,6 +163,10 @@ class ComposerStaticInitaa30da0add75f98291deb943ede2e73b
         'DI\\' => 
         array (
             0 => __DIR__ . '/..' . '/php-di/php-di/src',
+        ),
+        'App\\Http\\Models\\' => 
+        array (
+            0 => __DIR__ . '/../..' . '/app/Http/Models',
         ),
         'App\\Http\\Controllers\\' => 
         array (

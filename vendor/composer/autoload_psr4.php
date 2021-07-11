@@ -27,6 +27,7 @@ return array(
     'Doctrine\\Instantiator\\' => array($vendorDir . '/doctrine/instantiator/src/Doctrine/Instantiator'),
     'DeepCopy\\' => array($vendorDir . '/myclabs/deep-copy/src/DeepCopy'),
     'DI\\' => array($vendorDir . '/php-di/php-di/src'),
+    'App\\Http\\Models\\' => array($baseDir . '/app/Http/Models'),
     'App\\Http\\Controllers\\' => array($baseDir . '/app/Http/Controllers'),
     'App\\Helper\\' => array($baseDir . '/app/Helper'),
     'App\\' => array($vendorDir . '/slim/slim-skeleton/src'),
