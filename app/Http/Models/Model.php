@@ -3,19 +3,22 @@ declare(strict_types = 1);
 
 namespace App\Http\Models;
 
+use App\Helper\LinkFileHelper as FileHelper;
 /**
  * Model
  */
 abstract class Model {
 
+    protected $fileHelper;
     protected $fileLocation;
     protected $getFile;
     public $shortLinksArr;
 
     public function __construct()
     {
-        $this->fileLocation = $_SERVER['DOCUMENT_ROOT'] . "/app/Storage/shortlink_store.json";
-        $this->getFile = file_get_contents($this->fileLocation);
+        $this->fileHelper = new FileHelper();
+        $this->fileLocation = $this->fileHelper->getFileLocation();
+        $this->getFile = $this->fileHelper->getFileContents();
         $this->shortLinksArr = json_decode($this->getFile, true) ?? array();
     }
 }
