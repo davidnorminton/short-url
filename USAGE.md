@@ -48,3 +48,12 @@ The api returns a json object in the form:
 
 The decode endpoint accepts a generated encoded string that is stored in the system.
 
+### Run tests
+
+From root of project
+
+```bash
+
+$ vendor/bin/phpunit ./tests
+```
+

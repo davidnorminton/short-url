@@ -6,26 +6,26 @@ namespace App\Http\Models;
 use App\Http\Models\Model; 
 use App\Http\Interfaces\EncodeInterface;
 use App\Helper\EncodingHelper;
-use App\Helper\ShortLinksArrayHelper as ShortLinksArrayHelper;
+use App\Helper\ShortLinksArrayHelper as ArrayHelper;
 
 /**
  * EncodeModel
  */
 class EncodeModel extends Model implements EncodeInterface {
 
-    protected $ShortLinksArrayHelper;
+    protected $arrayHelper;
     
     /**
      * __construct
      *
-     * @param  ShortLinksArrayHelper  $ShortLinksArrayHelper
+     * @param  ShortLinksArrayHelper $ShortLinksArrayHelper
      * @return void
      */
-    public function __construct(ShortLinksArrayHelper $ShortLinksArrayHelper)
+    public function __construct(ArrayHelper $arrayHelper)
     {
         parent::__construct();
-        $this->ShortLinksArrayHelper = $ShortLinksArrayHelper;
-        $this->ShortLinksArrayHelper->setArr($this->shortLinksArr);
+        $this->arrayHelper = $arrayHelper;
+        $this->arrayHelper->setArr($this->shortLinksArr);
     }
 
     /**
@@ -37,7 +37,7 @@ class EncodeModel extends Model implements EncodeInterface {
      */
     public function shortenUrl(string $url): string
     {
-        $id = $this->ShortLinksArrayHelper->findIdFromUrl($url);
+        $id = $this->arrayHelper->findIdFromUrl($url);
         // if id doesn't exist create a new entry
         return !$id ? $this->addToFile($url) : $id;
     }
@@ -53,7 +53,7 @@ class EncodeModel extends Model implements EncodeInterface {
     public function addToFile(string $url): ?string 
     {
 
-        $lastItem = $this->ShortLinksArrayHelper->getLastItemInArray();
+        $lastItem = $this->arrayHelper->getLastItemInArray();
         $nextId = 0;
 
         if($lastItem) {
