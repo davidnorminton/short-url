@@ -6,7 +6,7 @@ namespace App\Http\Models;
 /**
  * Model
  */
-class Model {
+abstract class Model {
 
     protected $fileLocation;
     protected $getFile;

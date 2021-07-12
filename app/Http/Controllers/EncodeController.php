@@ -11,7 +11,6 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 
 use App\Http\Interfaces\ControllerInterface;
-
 use App\Http\Models\EncodeModel as EncodeModel;
 use App\Http\Controllers\ShortController;
 use App\Helper\ValidateData as validate;
@@ -70,7 +69,7 @@ class EncodeController extends ShortController implements ControllerInterface {
             $responseData = array(
                 "original" => $query,
                 "id" => $encodeId,
-                "slimLinkUrl" => $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . "/decode/$encodeId"
+                "slimlink_decode_url" => $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . "/decode/$encodeId"
             );
 
             return json_encode($responseData, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
