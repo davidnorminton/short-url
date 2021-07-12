@@ -15,20 +15,20 @@ use App\Http\Interfaces\ControllerInterface;
 use App\Http\Models\EncodeModel as EncodeModel;
 use App\Http\Controllers\ShortController;
 use App\Helper\ValidateData as validate;
-use App\Helper\ShortLinksFileHelper as FileHelper;
+use App\Helper\ShortLinksArrayHelper as ArrayHelper;
 
 /**
  * EncodeController
  */
-class EncodeController extends ShortController implements ControllerInterface{
+class EncodeController extends ShortController implements ControllerInterface {
 
     public $encodeModel;
-    public $fileHelper;
+    public $arrayHelper;
 
     public function __construct()
     {
         // EncodeModel depends on App\Helper\ShortLinksFileHelper
-        $this->encodeModel = new EncodeModel(new FileHelper());
+        $this->encodeModel = new EncodeModel(new ArrayHelper);
     }
 
     /**

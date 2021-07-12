@@ -6,11 +6,20 @@ use App\Helper\EncodingHelper as helper;
 
 final class EncodingHelperTest extends TestCase
 {
-    public function testRemoveBase64EncodingFromUrl()
+    public function testConvertBase36ToDecimal()
     {
         $helper = new helper();
-        $rawUrl = $helper->removeBase64EncodingFromUrl("aHR0cHM6Ly9nb29nbGUuY29tLw==");
-        $this->assertEquals($rawUrl, "https://google.com/");
+        // aa = 320
+        $decimal = $helper->convertBase36ToDecimal("aa");
+        $this->assertEquals($decimal, "370");
+    }
+
+    public function testConvertDecimalToBase36()
+    {
+        $helper = new helper();
+        // aa = 320
+        $base36 = $helper->convertDecimalToBase36(370);
+        $this->assertEquals($base36, "aa");
     }
 
 }

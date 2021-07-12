@@ -11,24 +11,23 @@ final class RoutesTest extends TestCase
     private $ip = '127.0.0.1';
 
     // Port of app
-    private $port = ':9090';
+    private $port = ':8080';
 
     // encode url
-    private $encode = '/encode/';
+    private $encode = '/encode?url=';
 
     // test encode parameter
     private $testEncode = 'https://google.com/';
 
     // decode url 
-    private $decode = '/decode/';
+    private $decode = '/decode?id=';
 
 
     // test encode endpoint
     public function testEncodeRoute() : void
     {
-        $base64EncodeTestUrl = base64_encode($this->testEncode);
 
-        $url = $this->proto  .$this->ip . ':'. $this->port . $this->encode. $base64EncodeTestUrl;
+        $url = $this->proto  .$this->ip . $this->port . $this->encode. $this->testEncode;
 
         $output = file_get_contents($url);
         $decodeOutput = json_decode($output, true);
@@ -39,14 +38,12 @@ final class RoutesTest extends TestCase
     // test decode endpoint
     public function testDecodeRoute() : void
     {
-        $base64EncodeTestUrl = base64_encode($this->testEncode);
-
         $url = $this->proto . $this->ip . $this->port . $this->decode . '1';
 
         $output = file_get_contents($url);
         $decodeOutput = json_decode($output, true);
         echo  PHP_EOL . "Testing decode endpoint" . PHP_EOL;
-        $this->assertEquals($this->testEncode, $decodeOutput['original']);
+        $this->assertEquals("https://www.amazon.co.uk", $decodeOutput['url']);
     }
 
 }

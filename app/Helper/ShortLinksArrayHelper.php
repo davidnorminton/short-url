@@ -2,7 +2,7 @@
 
 namespace App\Helper;
 
-class ShortLinksFileHelper {
+class ShortLinksArrayHelper {
 
     public $arr;
 

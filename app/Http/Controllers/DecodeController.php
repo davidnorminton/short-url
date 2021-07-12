@@ -9,7 +9,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use App\Http\Interfaces\ControllerInterface;
 use App\Http\Models\DecodeModel as DecodeModel;
 use App\Http\Controllers\ShortController;
-use App\Helper\ShortLinksFileHelper as FileHelper;
+use App\Helper\ShortLinksArrayHelper as ArrayHelper;
 
 
 /**
@@ -19,12 +19,12 @@ use App\Helper\ShortLinksFileHelper as FileHelper;
 class DecodeController extends ShortController implements ControllerInterface {
 
     public $decodeModel;
-    public $fileHelper;
+    public $arrayHelper;
 
     public function __construct()
     {
         // DecodeModel depends on App\Helper\ShortLinksFileHelper
-        $this->decodeModel = new DecodeModel(new FileHelper());
+        $this->decodeModel = new DecodeModel(new ArrayHelper);
     }
 
     /**
