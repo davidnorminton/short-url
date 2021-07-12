@@ -3,4 +3,4 @@
 require 'vendor/autoload.php';
 
 // Include router
-require 'router/routes.php';
+require 'routes/api.php';

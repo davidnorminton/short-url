@@ -8,10 +8,19 @@ use App\Http\Interfaces\EncodeInterface;
 use App\Helper\EncodingHelper;
 use App\Helper\ShortLinksArrayHelper as ShortLinksArrayHelper;
 
+/**
+ * EncodeModel
+ */
 class EncodeModel extends Model implements EncodeInterface {
 
-    protected $ShortLinksFileHelper;
-
+    protected $ShortLinksArrayHelper;
+    
+    /**
+     * __construct
+     *
+     * @param  ShortLinksArrayHelper  $ShortLinksArrayHelper
+     * @return void
+     */
     public function __construct(ShortLinksArrayHelper $ShortLinksArrayHelper)
     {
         parent::__construct();

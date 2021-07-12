@@ -3,6 +3,9 @@ declare(strict_types = 1);
 
 namespace App\Http\Models;
 
+/**
+ * Model
+ */
 class Model {
 
     protected $fileLocation;
