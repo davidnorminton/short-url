@@ -1,6 +1,8 @@
 <?php
+define('BP', $_SERVER['DOCUMENT_ROOT']);
+
 // composer autoload modules
-require 'vendor/autoload.php';
+require BP . '/vendor/autoload.php';
 
 // Include router
-require 'routes/api.php';
+require BP . '/routes/api.php';

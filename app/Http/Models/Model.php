@@ -14,7 +14,7 @@ class Model {
 
     public function __construct()
     {
-        $this->fileLocation = $_SERVER['DOCUMENT_ROOT'] . "/app/Storage/Hash_lookup.json";
+        $this->fileLocation = $_SERVER['DOCUMENT_ROOT'] . "/app/Storage/shortlink_store.json";
         $this->getFile = file_get_contents($this->fileLocation);
         $this->shortLinksArr = json_decode($this->getFile, true) ?? array();
     }
