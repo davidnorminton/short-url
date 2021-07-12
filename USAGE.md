@@ -36,7 +36,7 @@ The api returns a json object in the form:
 {
     "original":"https://google.com/",
     "short":"1",
-    "slimLink_decode_url":"127.0.0.1:9090/decode/1"
+    "slimLink_decode_url":"127.0.0.1:8080/decode/1"
 }
 ```
 - Here the original key represents the original url.
@@ -52,8 +52,7 @@ The decode endpoint accepts a generated encoded string that is stored in the sys
 
 From root of project
 
-```bash
-
-$ vendor/bin/phpunit ./tests
+```console
+foo@bar:~$  vendor/bin/phpunit ./tests
 ```
 
