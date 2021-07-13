@@ -43,34 +43,12 @@ class DecodeController extends ShortController implements ControllerInterface {
         $id = $request->getQueryParams("url")["id"];
 
         if($id) {
-            $response->getBody()->write($this->responseData($id));
+            $response->getBody()->write($this->decodeModel->responseData($id));
         } else {
             $response->getBody()->write($this->error($id, "Invalid URl"));
         }
 
         return $response->withHeader('Content-type', 'application/json');
-    }
-
-    /**
-     * responseData
-     * How the data is represented at end point
-     * 
-     * @param  string $url
-     * @return string (json)
-     */
-    public function responseData(string $query): ?string
-    {
-        $url = $this->decodeModel->getUrlFromId($query);
-
-        if($url) {
-            $responseData = array(
-                "id" => $query,
-                "url" => $url            
-            );
-
-            return json_encode($responseData,  JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
-        }
-        return null;
     }
 
 }

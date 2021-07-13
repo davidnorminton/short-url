@@ -34,7 +34,7 @@ class EncodeController extends ShortController implements ControllerInterface {
      * getPage
      * returns a shortened hashed version of the url
      * 
-     * @Route("/encode/{url}", methods={"GET"})
+     * @Route("/encode?url=", methods={"GET"})
      *
      * @param  Request $request
      * @param  Response $response
@@ -46,7 +46,7 @@ class EncodeController extends ShortController implements ControllerInterface {
         $url = $request->getQueryParams("url")["url"];
 
         if(validate::isValidUrl($url)) {
-            $response->getBody()->write($this->responseData($url));
+            $response->getBody()->write($this->encodeModel->responseData($url));
         } else {
             $response->getBody()->write($this->error($url, "Invalid URl"));
         }
@@ -54,27 +54,6 @@ class EncodeController extends ShortController implements ControllerInterface {
         return $response->withHeader('Content-type', 'application/json');
     }
     
-    /**
-     * responseData
-     * How the data is represented at end point
-     * 
-     * @param  string $url
-     * @return string (json)
-     */
-    public function responseData(string $query): ?string
-    {
-        $encodeId = $this->encodeModel->shortenUrl($query);
 
-        if($encodeId) {
-            $responseData = array(
-                "original" => $query,
-                "id" => $encodeId,
-                "slimlink_decode_url" => $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . "/decode/$encodeId"
-            );
-
-            return json_encode($responseData, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
-        }
-        return null;
-    }
     
 }

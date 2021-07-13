@@ -4,10 +4,11 @@ declare(strict_types = 1);
 namespace App\Http\Models;
 
 use App\Helper\LinkFileHelper as FileHelper;
+
 /**
  * Model
  */
-abstract class Model {
+class Model {
 
     protected $fileHelper;
     protected $fileLocation;
@@ -16,6 +17,7 @@ abstract class Model {
 
     public function __construct()
     {
+
         $this->fileHelper = new FileHelper();
         $this->fileLocation = $this->fileHelper->getFileLocation();
         $this->getFile = $this->fileHelper->getFileContents();

@@ -29,6 +29,29 @@ class EncodeModel extends Model implements EncodeInterface {
     }
 
     /**
+     * responseData
+     * How the data is represented at end point
+     * 
+     * @param  string $url
+     * @return string (json)
+     */
+    public function responseData(string $query): ?string
+    {
+        $encodeId = $this->shortenUrl($query);
+
+        if($encodeId) {
+            $responseData = array(
+                "original" => $query,
+                "id" => $encodeId,
+                "slimlink_decode_url" => $_SERVER['SERVER_NAME'] . ':' . $_SERVER['SERVER_PORT'] . "/decode/$encodeId"
+            );
+
+            return json_encode($responseData, JSON_UNESCAPED_SLASHES | JSON_PRETTY_PRINT);
+        }
+        return null;
+    }
+    
+    /**
      * shortenUrl
      * return id shorter than the original url 
      * 

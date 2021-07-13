@@ -5,7 +5,7 @@
         'type' => 'library',
         'install_path' => __DIR__ . '/../../',
         'aliases' => array(),
-        'reference' => '9356d17bf9d7d2a4848d91cf0dd325301f0e927c',
+        'reference' => '740000969d3607a4ec627c3c78fc1d5001c902e1',
         'name' => '__root__',
         'dev' => true,
     ),
@@ -16,7 +16,7 @@
             'type' => 'library',
             'install_path' => __DIR__ . '/../../',
             'aliases' => array(),
-            'reference' => '9356d17bf9d7d2a4848d91cf0dd325301f0e927c',
+            'reference' => '740000969d3607a4ec627c3c78fc1d5001c902e1',
             'dev_requirement' => false,
         ),
         'doctrine/instantiator' => array(
@@ -128,6 +128,15 @@
             'install_path' => __DIR__ . '/../php-di/phpdoc-reader',
             'aliases' => array(),
             'reference' => '66daff34cbd2627740ffec9469ffbac9f8c8185c',
+            'dev_requirement' => false,
+        ),
+        'php-di/slim-bridge' => array(
+            'pretty_version' => '3.1.1',
+            'version' => '3.1.1.0',
+            'type' => 'library',
+            'install_path' => __DIR__ . '/../php-di/slim-bridge',
+            'aliases' => array(),
+            'reference' => 'ad74ba03a3b97c717d58ac04b88671bafe4549c7',
             'dev_requirement' => false,
         ),
         'phpdocumentor/reflection-common' => array(
